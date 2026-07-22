@@ -630,10 +630,7 @@
                 <li data-id="285" class="flex items-start gap-2 text-sm text-muted"><i data-id="286" data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Community support</li>
                 <li data-id="287" class="flex items-start gap-2 text-sm text-muted"><i data-id="288" data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> API key authentication</li>
               </ul>
-              <div data-id="289" class="tooltip-container">
-                <button data-id="290" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Get Started</button>
-                <span data-id="291" class="tooltip-text">Payment system launching soon — join the waitlist</span>
-              </div>
+              <button data-id="290" data-tier="developer" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Get Started</button>
             </div>
 
             <!-- Professional (highlighted) -->
@@ -652,10 +649,7 @@
                 <li data-id="306" class="flex items-start gap-2 text-sm text-muted"><i data-id="307" data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Email support</li>
                 <li data-id="308" class="flex items-start gap-2 text-sm text-muted"><i data-id="309" data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Usage dashboard</li>
               </ul>
-              <div data-id="310" class="tooltip-container">
-                <button data-id="311" class="pricing-cta w-full py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-sm">Get Started</button>
-                <span data-id="312" class="tooltip-text">Payment system launching soon — join the waitlist</span>
-              </div>
+              <button data-id="311" data-tier="professional" class="pricing-cta w-full py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-sm">Get Started</button>
             </div>
 
             <!-- Enterprise -->
@@ -673,10 +667,7 @@
                 <li data-id="326" class="flex items-start gap-2 text-sm text-muted"><i data-id="327" data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Custom integration help</li>
                 <li data-id="328" class="flex items-start gap-2 text-sm text-muted"><i data-id="329" data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Invoicing available</li>
               </ul>
-              <div data-id="330" class="tooltip-container">
-                <button data-id="331" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Get Started</button>
-                <span data-id="332" class="tooltip-text">Payment system launching soon — join the waitlist</span>
-              </div>
+              <button data-id="331" data-tier="enterprise" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Get Started</button>
             </div>
           </div>
 
@@ -817,6 +808,44 @@
           navbar.style.borderBottomColor = 'rgba(39,39,42,0.5)';
         }
       }, { passive: true });
+
+      // === Stripe Checkout for pricing buttons ===
+      const API_BASE = 'https://web-production-58f81.up.railway.app';
+
+      document.querySelectorAll('.pricing-cta').forEach(function(btn) {
+        btn.addEventListener('click', async function() {
+          var tier = btn.getAttribute('data-tier');
+          if (!tier) return;
+
+          // Disable button while loading
+          var originalText = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Loading...';
+
+          try {
+            var response = await fetch(API_BASE + '/billing/checkout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ tier: tier })
+            });
+
+            var data = await response.json();
+
+            if (data.checkout_url) {
+              window.location.href = data.checkout_url;
+            } else {
+              alert('Could not start checkout. Please try again or contact support.');
+              btn.disabled = false;
+              btn.textContent = originalText;
+            }
+          } catch (err) {
+            console.error(err);
+            alert('Network error. Please try again.');
+            btn.disabled = false;
+            btn.textContent = originalText;
+          }
+        });
+      });
     </script>
 </body>
 </html>
