@@ -38,248 +38,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #0a0a0a;
-        --card: #111111;
-        --card-alt: #1a1a1a;
-        --primary: #6366f1;
-        --primary-dark: #4f46e5;
-        --primary-light: #818cf8;
-        --secondary: #22d3ee;
-        --fg: #f4f4f5;
-        --muted: #71717a;
-        --border: #27272a;
-        --success: #22c55e;
+        --bg: #0a0a0a; --card: #111111; --card-alt: #1a1a1a; --primary: #6366f1;
+        --primary-dark: #4f46e5; --primary-light: #818cf8; --secondary: #22d3ee;
+        --fg: #f4f4f5; --muted: #71717a; --border: #27272a; --success: #22c55e;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', system-ui, sans-serif;
-        background: var(--bg);
-        color: var(--fg);
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
+        background: var(--bg); color: var(--fg); line-height: 1.6;
+        -webkit-font-smoothing: antialiased; overflow-x: hidden;
       }
       .glass-nav {
-        background: rgba(10, 10, 10, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+        background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(39, 39, 42, 0.5);
       }
       .gradient-text {
         background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       }
-      .blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(120px);
-        opacity: 0.3;
-        animation: float 8s ease-in-out infinite;
-        pointer-events: none;
-      }
-      .blob-1 { width: 500px; height: 500px; background: var(--primary); top: -100px; left: -100px; }
-      .blob-2 { width: 400px; height: 400px; background: var(--secondary); top: 100px; right: -150px; animation-delay: -3s; }
-      .blob-3 { width: 350px; height: 350px; background: var(--primary-dark); bottom: 0; left: 40%; animation-delay: -5s; }
-      @keyframes float {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        33% { transform: translate(30px, -30px) scale(1.05); }
-        66% { transform: translate(-20px, 20px) scale(0.95); }
-      }
-      .code-block {
-        background: #0d0d0d;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        font-family: 'Courier New', monospace;
-        font-size: 0.85rem;
-        line-height: 1.7;
-      }
-      .code-block .code-header {
-        background: #161616;
-        padding: 10px 16px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .code-dot { width: 12px; height: 12px; border-radius: 50%; }
-      .code-dot-r { background: #ef4444; }
-      .code-dot-y { background: #eab308; }
-      .code-dot-g { background: var(--success); }
-      .code-body { padding: 20px; overflow-x: auto; }
-      .syn-method { color: var(--secondary); font-weight: 600; }
-      .syn-path { color: var(--fg); }
-      .syn-header { color: var(--muted); }
-      .syn-key { color: var(--primary-light); }
-      .syn-string { color: var(--success); }
-      .syn-number { color: #f59e0b; }
-      .syn-comment { color: var(--muted); font-style: italic; }
-      .syn-arrow { color: var(--secondary); font-weight: 700; }
-      .hover-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .hover-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 0 40px rgba(99, 102, 241, 0.1);
-      }
+      .hover-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .hover-card:hover { transform: translateY(-4px); box-shadow: 0 0 40px rgba(99, 102, 241, 0.1); }
       .pricing-glow {
         box-shadow: 0 0 60px rgba(99, 102, 241, 0.15), 0 0 120px rgba(99, 102, 241, 0.05);
         border-color: var(--primary) !important;
       }
-      .tab-btn-api { transition: all 0.2s ease; }
-      .tab-btn-api.active {
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
-      }
-      .fade-section {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-      }
-      .fade-section.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .fade-section.visible { opacity: 1; transform: translateY(0); }
       .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 20px;
-        border-radius: 9999px;
-        border: 1px solid var(--primary);
-        background: rgba(99, 102, 241, 0.08);
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--primary-light);
-      }
-      .icon-box {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 16px;
-      }
-      .icon-box-red { background: rgba(239, 68, 68, 0.12); color: #f87171; }
-      .icon-box-primary { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
-      .icon-box-secondary { background: rgba(34, 211, 238, 0.12); color: #22d3ee; }
-      .contact-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 24px;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-      .contact-pill-investors {
-        border: 1px solid var(--primary);
-        color: var(--primary-light);
-        background: rgba(99, 102, 241, 0.06);
-      }
-      .contact-pill-investors:hover {
-        background: rgba(99, 102, 241, 0.15);
-        box-shadow: 0 0 24px rgba(99, 102, 241, 0.25);
-      }
-      .contact-pill-press {
-        border: 1px solid var(--secondary);
-        color: var(--secondary);
-        background: rgba(34, 211, 238, 0.06);
-      }
-      .contact-pill-press:hover {
-        background: rgba(34, 211, 238, 0.15);
-        box-shadow: 0 0 24px rgba(34, 211, 238, 0.25);
-      }
-      @media (max-width: 767px) {
-        .blob { opacity: 0.15; }
-        .blob-1 { width: 250px; height: 250px; }
-        .blob-2 { width: 200px; height: 200px; }
-        .blob-3 { width: 180px; height: 180px; }
+        display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px;
+        border-radius: 9999px; border: 1px solid var(--primary);
+        background: rgba(99, 102, 241, 0.08); font-size: 0.875rem; font-weight: 500; color: var(--primary-light);
       }
     </style>
 </head>
 <body class="bg-bg text-fg" data-api-base="https://web-production-58f81.up.railway.app">
 
-    <!-- NAV -->
-    <header id="navbar-h3k2" class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <header class="glass-nav fixed top-0 left-0 right-0 z-50">
       <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 h-16">
         <a href="#" class="flex items-center gap-2 shrink-0">
           <span class="text-white font-bold text-lg tracking-tight">NobleLogic</span>
           <span class="text-xs font-medium text-primary-light bg-primary/10 border border-primary/30 rounded-full px-2 py-0.5 hidden sm:inline-block">CLIP Maintained API</span>
         </a>
         <nav class="hidden md:flex items-center gap-8">
-          <a href="#features" class="text-sm text-muted hover:text-fg transition-colors">Features</a>
-          <a href="#use-cases" class="text-sm text-muted hover:text-fg transition-colors">Use Cases</a>
           <a href="#pricing" class="text-sm text-muted hover:text-fg transition-colors">Pricing</a>
-          <a href="#api-docs" class="text-sm text-muted hover:text-fg transition-colors">Docs</a>
-          <a href="https://github.com/NobleLogic1/clip-api-public" target="_blank" rel="noopener" class="text-sm text-muted hover:text-fg transition-colors flex items-center gap-1.5">
-            <i data-lucide="github" class="w-4 h-4"></i> GitHub
-          </a>
+          <a href="https://github.com/NobleLogic1/clip-api-public" target="_blank" rel="noopener" class="text-sm text-muted hover:text-fg transition-colors">GitHub</a>
         </nav>
-        <div class="hidden md:flex items-center gap-3">
-          <a href="#pricing" class="text-sm bg-primary hover:bg-primary-dark text-white rounded-lg px-4 py-2 transition-colors font-medium">Get API Key</a>
-        </div>
-        <button type="button" id="mobile-menu-btn-x9f1" class="md:hidden p-2 text-fg" aria-label="Open menu">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
+        <a href="#pricing" class="hidden md:inline-flex text-sm bg-primary hover:bg-primary-dark text-white rounded-lg px-4 py-2 transition-colors font-medium">Get API Key</a>
       </div>
     </header>
 
-    <!-- Mobile menu -->
-    <nav id="mobile-menu-k7m3" class="hidden fixed inset-0 bg-bg/95 backdrop-blur-xl z-[60] flex flex-col p-6">
-      <div class="flex items-center justify-between mb-10">
-        <span class="text-white font-bold text-lg">NobleLogic</span>
-        <button type="button" id="mobile-menu-close-p2r4" class="p-2 text-fg" aria-label="Close menu">
-          <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-      </div>
-      <div class="flex flex-col gap-6 text-lg">
-        <a href="#features" class="mobile-nav-link text-muted hover:text-fg transition-colors">Features</a>
-        <a href="#use-cases" class="mobile-nav-link text-muted hover:text-fg transition-colors">Use Cases</a>
-        <a href="#pricing" class="mobile-nav-link text-muted hover:text-fg transition-colors">Pricing</a>
-        <a href="#api-docs" class="mobile-nav-link text-muted hover:text-fg transition-colors">Docs</a>
-        <a href="https://github.com/NobleLogic1/clip-api-public" target="_blank" rel="noopener" class="mobile-nav-link text-muted hover:text-fg transition-colors flex items-center gap-2">
-          <i data-lucide="github" class="w-5 h-5"></i> GitHub
-        </a>
-        <hr class="border-border" />
-        <a href="#pricing" class="mobile-nav-link bg-primary text-white rounded-lg px-4 py-3 text-center font-medium">Get API Key</a>
-      </div>
-    </nav>
-
     <main>
-
-      <!-- HERO (unchanged) -->
-      <section class="relative min-h-screen flex flex-col items-center justify-center px-4 md:px-6 pt-24 pb-16 overflow-hidden">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+      <section class="relative min-h-[70vh] flex flex-col items-center justify-center px-4 md:px-6 pt-24 pb-16">
         <div class="relative z-10 max-w-4xl mx-auto text-center">
           <div class="hero-badge mb-8">The Only Actively Maintained CLIP API</div>
-          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
             CLIP Embeddings.<br/>Production Ready.<br/><span class="gradient-text">Finally.</span>
           </h1>
-          <p class="text-base sm:text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-            OpenAI's CLIP model — containerized, hosted, and actively maintained. Generate image and text embeddings via simple HTTP requests. No GPU. No setup. No broken dependencies.
+          <p class="text-base sm:text-lg text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+            OpenAI's CLIP model — containerized, hosted, and actively maintained. No GPU. No setup.
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-8 py-3.5 transition-colors text-base">
-              Start Building <span class="ml-1">→</span>
-            </a>
-            <a href="https://github.com/NobleLogic1/clip-api-public" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border hover:border-muted text-fg font-medium rounded-xl px-8 py-3.5 transition-colors text-base">
-              <i data-lucide="github" class="w-5 h-5"></i> View on GitHub
-            </a>
-          </div>
+          <a href="#pricing" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-8 py-3.5 transition-colors text-base">
+            Start Building →
+          </a>
         </div>
       </section>
 
-      <!-- PRICING -->
       <section id="pricing" class="fade-section py-20 md:py-28 px-4 md:px-6">
         <div class="max-w-6xl mx-auto">
           <div class="text-center mb-14">
@@ -289,117 +113,67 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
 
-            <!-- FREE -->
             <div class="hover-card bg-card border border-border rounded-2xl p-8 flex flex-col">
               <h3 class="text-sm font-semibold uppercase tracking-wider text-muted mb-4">Free</h3>
-              <div class="mb-1">
-                <span class="text-4xl font-extrabold text-fg">$0</span>
-              </div>
+              <div class="mb-1"><span class="text-4xl font-extrabold text-fg">$0</span></div>
               <p class="text-xs text-muted mb-2">9,000 API calls / month</p>
               <p class="text-sm text-muted mb-6 leading-relaxed">Perfect for prototyping. Upgrade when you’re ready for production.</p>
               <ul class="space-y-3 mb-8 flex-1">
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Text & image embedding endpoints</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Real API key (no credit card)</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Community support</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Text & image embedding endpoints</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Email-verified real API key</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ No credit card required</li>
               </ul>
               <button type="button" data-tier="free" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Try it free</button>
-              <p class="text-xs text-muted text-center mt-3">Build and test with a real API key — no credit card required.</p>
+              <p class="text-xs text-muted text-center mt-3">We’ll email you a verification link — then your key.</p>
             </div>
 
-            <!-- DEVELOPER -->
             <div class="hover-card bg-card border border-border rounded-2xl p-8 flex flex-col">
               <h3 class="text-sm font-semibold uppercase tracking-wider text-muted mb-4">Developer</h3>
-              <div class="mb-1">
-                <span class="text-4xl font-extrabold text-fg">$29</span>
-                <span class="text-muted text-sm">/month</span>
-              </div>
+              <div class="mb-1"><span class="text-4xl font-extrabold text-fg">$29</span><span class="text-muted text-sm">/month</span></div>
               <p class="text-xs text-muted mb-6">500,000 API calls/month</p>
               <ul class="space-y-3 mb-8 flex-1">
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Text & image embedding endpoints</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Standard rate limits</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Community support</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> API key authentication</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Text & image embedding endpoints</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Standard rate limits</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Community support</li>
               </ul>
               <button type="button" data-tier="developer" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Get Started</button>
             </div>
 
-            <!-- PROFESSIONAL -->
             <div class="hover-card pricing-glow bg-card border-2 border-primary rounded-2xl p-8 flex flex-col relative">
               <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">Most Popular</div>
               <h3 class="text-sm font-semibold uppercase tracking-wider text-primary-light mb-4">Professional</h3>
-              <div class="mb-1">
-                <span class="text-4xl font-extrabold text-fg">$99</span>
-                <span class="text-muted text-sm">/month</span>
-              </div>
+              <div class="mb-1"><span class="text-4xl font-extrabold text-fg">$99</span><span class="text-muted text-sm">/month</span></div>
               <p class="text-xs text-muted mb-6">2,500,000 API calls/month</p>
               <ul class="space-y-3 mb-8 flex-1">
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Everything in Developer</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> 99.5% uptime SLA</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Priority queue</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Email support</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Usage dashboard</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Everything in Developer</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ 99.5% uptime SLA</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Priority queue + email support</li>
               </ul>
               <button type="button" data-tier="professional" class="pricing-cta w-full py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-sm">Get Started</button>
             </div>
 
-            <!-- ENTERPRISE -->
             <div class="hover-card bg-card border border-border rounded-2xl p-8 flex flex-col">
               <h3 class="text-sm font-semibold uppercase tracking-wider text-muted mb-4">Enterprise</h3>
-              <div class="mb-1">
-                <span class="text-4xl font-extrabold text-fg">$299</span>
-                <span class="text-muted text-sm">/month</span>
-              </div>
+              <div class="mb-1"><span class="text-4xl font-extrabold text-fg">$299</span><span class="text-muted text-sm">/month</span></div>
               <p class="text-xs text-muted mb-6">10,000,000 API calls/month</p>
               <ul class="space-y-3 mb-8 flex-1">
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Everything in Professional</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> 99.9% uptime SLA</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Dedicated support</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Custom integration help</li>
-                <li class="flex items-start gap-2 text-sm text-muted"><i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i> Invoicing available</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Everything in Professional</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ 99.9% uptime SLA</li>
+                <li class="flex items-start gap-2 text-sm text-muted">✓ Dedicated support</li>
               </ul>
               <button type="button" data-tier="enterprise" class="pricing-cta w-full py-3 rounded-xl border border-border text-fg font-semibold hover:border-muted transition-colors text-sm">Get Started</button>
             </div>
 
           </div>
-
-          <div class="text-center mt-10 space-y-4">
-            <div class="bg-card-alt border border-border rounded-2xl p-6 max-w-xl mx-auto">
-              <p class="text-sm font-semibold text-fg mb-1">Custom / Volume Pricing</p>
-              <p class="text-sm text-muted">Processing millions of images? Contact us for custom pricing.</p>
-              <a href="mailto:mark@noblelogicllc.com" class="inline-flex items-center gap-1 text-sm text-primary-light hover:text-primary mt-2 transition-colors">
-                mark@noblelogicllc.com <span>→</span>
-              </a>
-            </div>
-          </div>
         </div>
       </section>
-
     </main>
 
-    <footer class="border-t border-border py-14 px-4 md:px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10">
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-white font-bold text-lg">NobleLogic</span>
-              <span class="text-xs text-primary-light bg-primary/10 border border-primary/30 rounded-full px-2 py-0.5">CLIP API</span>
-            </div>
-            <p class="text-sm text-muted">NobleLogic LLC — Fort Pierce, FL</p>
-          </div>
-        </div>
-        <div class="pt-8 border-t border-border">
-          <p class="text-xs text-muted leading-relaxed max-w-2xl">
-            © 2026 NobleLogic LLC. CLIP model architecture is the intellectual property of OpenAI. NobleLogic claims no ownership of the underlying model.
-          </p>
-        </div>
-      </div>
+    <footer class="border-t border-border py-10 px-4 text-center">
+      <p class="text-xs text-muted">© 2026 NobleLogic LLC — Fort Pierce, FL</p>
     </footer>
 
     <script>
-      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
-        lucide.createIcons();
-      }
-
       const API_BASE = document.body.getAttribute('data-api-base') || 'https://web-production-58f81.up.railway.app';
 
       document.querySelectorAll('.pricing-cta').forEach(function(btn) {
@@ -412,9 +186,8 @@
           btn.textContent = 'Loading...';
 
           try {
-            // Free tier — collect email and call /billing/free-key
             if (tier === 'free') {
-              var email = prompt('Enter your email to receive a free API key:');
+              var email = prompt('Enter your email — we will send a verification link:');
               if (!email || email.indexOf('@') === -1) {
                 alert('A valid email is required.');
                 return;
@@ -426,17 +199,24 @@
                 body: JSON.stringify({ email: email.trim() })
               });
 
+              var freeData = await freeResp.json().catch(function() { return {}; });
+
               if (!freeResp.ok) {
-                var errData = await freeResp.json().catch(function() { return {}; });
-                throw new Error(errData.detail || 'Failed to create free key');
+                throw new Error(freeData.detail || 'Failed to start free key signup');
               }
 
-              var freeData = await freeResp.json();
-              alert('Your free API key:\n\n' + freeData.api_key + '\n\nLimit: ' + freeData.monthly_limit + ' calls/month.\n\nCopy it now — it will not be shown again.');
+              if (freeData.status === 'already_exists') {
+                alert(freeData.message || 'You already have a free key for this email.');
+              } else {
+                alert(
+                  'Check your inbox at ' + email.trim() + '\n\n' +
+                  'Click the verification link to activate your free API key.\n' +
+                  'The link expires in 1 hour.'
+                );
+              }
               return;
             }
 
-            // Paid tiers — Stripe checkout
             var response = await fetch(API_BASE + '/billing/checkout', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -444,14 +224,11 @@
             });
 
             if (!response.ok) throw new Error('Checkout request failed');
-
             var data = await response.json();
-
             if (data && data.checkout_url) {
               window.location.href = data.checkout_url;
               return;
             }
-
             alert('Could not start checkout. Please try again or contact support.');
           } catch (err) {
             console.error(err);
