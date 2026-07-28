@@ -110,7 +110,7 @@
           <a href="#pricing" class="text-sm text-muted hover:text-fg transition-colors">Pricing</a>
           <a href="https://github.com/NobleLogic1/clip-api-public" target="_blank" rel="noopener" class="text-sm text-muted hover:text-fg transition-colors">GitHub</a>
         </nav>
-        <a href="#pricing" class="hidden md:inline-flex text-sm bg-primary hover:bg-primary-dark text-white rounded-lg px-4 py-2 transition-colors font-medium">Get API Key</a>
+        <button type="button" data-tier="free" class="pricing-cta hidden md:inline-flex text-sm bg-primary hover:bg-primary-dark text-white rounded-lg px-4 py-2 transition-colors font-medium">Try it free</button>
       </div>
     </header>
 
@@ -121,12 +121,18 @@
           <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
             CLIP Embeddings.<br/>Production Ready.<br/><span class="gradient-text">Finally.</span>
           </h1>
-          <p class="text-base sm:text-lg text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p class="text-base sm:text-lg text-muted max-w-2xl mx-auto mb-6 leading-relaxed">
             OpenAI's CLIP model — containerized, hosted, and actively maintained. No GPU. No setup.
           </p>
-          <a href="#pricing" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-8 py-3.5 transition-colors text-base">
-            Start Building →
-          </a>
+          <p class="text-sm text-muted mb-10">Build and test with a real API key — no credit card required.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button type="button" data-tier="free" class="pricing-cta inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-8 py-3.5 transition-colors text-base">
+              Try it free — no credit card
+            </button>
+            <a href="#pricing" class="inline-flex items-center justify-center gap-2 border border-border hover:border-muted text-fg font-medium rounded-xl px-8 py-3.5 transition-colors text-base">
+              View pricing
+            </a>
+          </div>
         </div>
       </section>
 
